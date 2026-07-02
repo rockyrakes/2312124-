@@ -1,20 +1,23 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-const filters = ["All", "Placement", "Result", "Event"];
-
 export function NotificationFilter({ value, onChange }) {
+  const handleChange = (event, newValue) => {
+    if (newValue !== null) {
+      onChange(newValue);
+    }
+  };
+
   return (
     <ToggleButtonGroup
       value={value}
       exclusive
-      size="small"
-      sx={{ flexWrap: "wrap", gap: 0.5 }}
+      onChange={handleChange}
+      color="primary"
     >
-      {filters.map((type) => (
-        <ToggleButton value={type} sx={{ textTransform: "none", px: 2 }}>
-          {type}
-        </ToggleButton>
-      ))}
+      <ToggleButton value="All">All</ToggleButton>
+      <ToggleButton value="Placement">Placement</ToggleButton>
+      <ToggleButton value="Result">Result</ToggleButton>
+      <ToggleButton value="Event">Event</ToggleButton>
     </ToggleButtonGroup>
   );
 }
